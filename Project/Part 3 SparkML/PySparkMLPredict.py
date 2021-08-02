@@ -1,7 +1,9 @@
 import io
 import sys
 
-from pyspark.ml import PipelineModel
+from pyspark.ml import Pipeline, PipelineModel
+from pyspark.ml.feature import VectorAssembler
+from pyspark.ml.regression import LinearRegressionModel, RandomForestRegressionModel
 from pyspark.sql import SparkSession
 
 import numpy as np
@@ -12,9 +14,21 @@ MODEL_PATH = 'spark_ml_model'
 
 def process(spark, input_file, output_file):
     test = spark.read.parquet(input_file)
-    model = PipelineModel.load(MODEL_PATH)
-    prediction = model.transform(test)
+    
+    try:
+        model = LinearRegressionModel.load(MODEL_PATH)
+    except:
+        model = RandomForestRegressionModel.load(MODEL_PATH)
+        
+    features = VectorAssembler(
+        inputCols=['has_video', 'is_cpm', 'is_cpc', 'ad_cost', 'day_count', 'target_audience_count'],
+        outputCol='features'
+    )
+    df_test = features.transform(test)
+        
+    prediction = model.transform(df_test)
     prediction[['ad_id', 'prediction']].coalesce(1).write.parquet(output_file) 
+    
     print('Task completed successfully')   
 
 
