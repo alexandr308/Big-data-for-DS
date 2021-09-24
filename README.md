@@ -1,8 +1,6 @@
 # Big-data-for-DS
 
 https://academy.stepik.org/big-data
--
---
 ---
 
 **Первая неделя: Введение в Big Data для Data Science**
@@ -10,7 +8,7 @@ https://academy.stepik.org/big-data
 - Хранение данных
 - Обработка данных
 - Практика и задачи по SQL и ClickHouse
-
+---
 
 **Вторая неделя: Hadoop**
 - Архитектура Hadoop
@@ -19,7 +17,7 @@ https://academy.stepik.org/big-data
 - Hive
 - Hbase
 - Практика и задачи
-
+---
 
 **Третья неделя: Spark**
 - Архитектура spark
