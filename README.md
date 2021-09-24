@@ -1,7 +1,7 @@
 # Big-data-for-DS
 
-Alt-https://academy.stepik.org/big-data
-
+https://academy.stepik.org/big-data
+---
 
 **Первая неделя: Введение в Big Data для Data Science**
 - Зачем DS знать Big Data?
